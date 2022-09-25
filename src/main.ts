@@ -56,9 +56,9 @@ function getFilePath(filename: string): string {
     return `${filesPath}/${filename}`
 }
 
-async function unLinkFile(filename: string) {
+async function unLinkFile(file: string) {
     try {
-        await unlink(getFilePath(filename))
+        await unlink(file)
     } catch (e) {
         throw e
     }

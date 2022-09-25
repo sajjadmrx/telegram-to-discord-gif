@@ -8,4 +8,4 @@ services:
     volumes:
       - files:/usr/app/files
 volumes:
-  - files:
+  files:
