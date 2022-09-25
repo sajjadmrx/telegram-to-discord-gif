@@ -15,7 +15,8 @@ export class Converter {
                 })
                 .on("error", (e) => reject(e))
                 .outputOption("-vf", "scale=320:-1:flags=lanczos,fps=15")
-                .save(output)
+                .output(output)
+                .run()
         })
     }
 }
