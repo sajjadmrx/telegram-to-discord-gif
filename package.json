@@ -1,0 +1,16 @@
+{
+  "name": "telegram-to-discord-gifs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon src/main.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^18.7.20",
+    "telegraf": "^4.9.2"
+  }
+}
