@@ -19,8 +19,8 @@ const filesPath: string = './files'
 bot.on([":video", ":animation"], async (ctx) => {
     try {
         const file = await ctx.getFile();
-        const filename: string = file.file_id + '.mp4'
-        const filenameOutPut: string = file.file_id + '.gif'
+        const filename: string = getUUId() + '.mp4'
+        const filenameOutPut: string = getUUId() + '.gif'
         await file.download(path.resolve(getFilePath(filename)));
         await Converter.videoToGif(getFilePath(filename), getFilePath(filenameOutPut))
         await ctx.reply('✅ Done..')
@@ -62,4 +62,8 @@ async function unLinkFile(filename: string) {
     } catch (e) {
         throw e
     }
+}
+
+function getUUId(): string {
+    return Date.now().toString()
 }
