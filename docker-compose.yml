@@ -5,3 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: always
+    volumes:
+      - files:/usr/app/files
+volumes:
+  - files:
