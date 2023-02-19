@@ -26,7 +26,7 @@ how create telegram bot:
 
 + https://www.siteguarding.com/en/how-to-get-telegram-bot-api-token
 
-how create discord channel webhook:
+how create a webhook on a Discord channel:
 
 + https://www.youtube.com/watch?v=fKksxz2Gdnc
 
