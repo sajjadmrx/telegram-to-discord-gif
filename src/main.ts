@@ -1,13 +1,13 @@
-import {config} from 'dotenv'
+import { config } from 'dotenv'
 
 config()
 
-import {Bot, Context} from "grammy";
-import {Webhook, WebhookClient} from 'discord.js'
-import {FileFlavor, hydrateFiles} from "@grammyjs/files";
+import { Bot, Context } from "grammy";
+import { WebhookClient } from 'discord.js'
+import { FileFlavor, hydrateFiles } from "@grammyjs/files";
 import path from "path";
-import {Converter} from "./converter";
-import {unlink} from "fs/promises";
+import { Converter } from "./converter";
+import { unlink } from "fs/promises";
 
 type MyContext = FileFlavor<Context>;
 
@@ -16,15 +16,28 @@ const bot = new Bot<MyContext>(String(process.env.TELEGRAM_BOT_TOKEN));
 bot.api.config.use(hydrateFiles(bot.token));
 
 const filesPath: string = './files'
+
+
 bot.on([":video", ":animation"], async (ctx) => {
     try {
+        await ctx.replyWithChatAction("typing")
+
         const file = await ctx.getFile();
+
         const filename: string = getUUId() + '.mp4'
+
         const filenameOutPut: string = getUUId() + '.gif'
+
         await file.download(path.resolve(getFilePath(filename)));
-        await Converter.videoToGif(getFilePath(filename), getFilePath(filenameOutPut))
+
+        const myConverter = new Converter(getFilePath(filename), getFilePath(filenameOutPut))
+
+        await myConverter.videoToGif()
+
         await ctx.reply('✅ Done..')
-        const client = new WebhookClient({url: String(process.env.WEBHOOK)})
+
+        const client = new WebhookClient({ url: String(process.env.WEBHOOK) })
+
         await client.send({
             files: [{
                 attachment: getFilePath(filenameOutPut),
@@ -32,7 +45,8 @@ bot.on([":video", ":animation"], async (ctx) => {
             }]
         })
 
-        await ctx.reply('ب دیسکورد ارسال شد!')
+        await ctx.reply(`✅ sended to Discord Webhook!`)
+
         try {
             await unLinkFile(getFilePath(filenameOutPut))
             await unLinkFile(getFilePath(filename))
@@ -40,9 +54,9 @@ bot.on([":video", ":animation"], async (ctx) => {
         } catch (e) {
 
         }
+
     } catch (e: any) {
-        console.log(e)
-        ctx.reply(e.message || 'ی خطایی داد')
+        ctx.reply(e.message || 'unknown error')
     }
 });
 

@@ -2,9 +2,9 @@
 
 ## Run With Docker
 
-`1. create .env file and set configs`
+`1. run config-env.sh`
 
-`2. docker-compose up`
+`2. docker-compose up -d`
 
 ## run Without Docker
 
@@ -16,8 +16,7 @@
 
 `4. npm install`
 
-`5. create .env file and set configs`
-[example](.env.ex)
+`5. run config-env.sh`
 
 `6. npm run start`
 
@@ -30,3 +29,8 @@ how create telegram bot:
 how create discord channel webhook:
 
 + https://www.youtube.com/watch?v=fKksxz2Gdnc
+
+
+## screen shots:
+
+<img src="./github/Screenshot%202023-02-19%20134202.png"/>
